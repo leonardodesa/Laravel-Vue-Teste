@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class UsersController extends Controller
@@ -34,7 +34,16 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        echo request;
+        dd($request);
+
+        var_dump($request);
+        
+        // if (isset(response()->json([$request->all()))) {
+        //     // return response()->json([$request->all()]);
+        // }
+        // dd($request);
+        // return ['message' => 'I have your date'];
     }
 
     /**
