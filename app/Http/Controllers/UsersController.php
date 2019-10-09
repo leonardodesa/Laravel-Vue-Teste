@@ -38,13 +38,10 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-
-        return 'store';
-        // if (isset(response()->json([$request->all()))) {
-        //     // return response()->json([$request->all()]);
-        // }
-        // dd($request);
-        // return ['message' => 'I have your date'];
+        // return 'ok';
+            // User::table('users')->insert(
+        //     ['like' => , 'deslike' => 0]
+        // );
     }
 
     /**

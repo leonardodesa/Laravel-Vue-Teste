@@ -25,6 +25,7 @@ export default {
         return {
             user: {},
             values: {
+                id: 0,
                 counterLike: 0,
                 counterDeslike: 0
             },
@@ -43,22 +44,40 @@ export default {
         },
 
         returnUserLikeAndDeslike: async function() {
-            let result = await this.$http.get('/users');
+            let result = await this.$http.get('users');
             let infoUser = JSON.parse(result.bodyText);
             return infoUser;
         },
 
         setLikeAndDeslikeUser: function(user) {
+            this.values.id = user.id;
             this.values.counterLike = user.like;
             this.values.counterDeslike = user.deslike;
         },
 
+        setUserLikeAndDeslikePost: async function() {
+
+            let data = {
+                id: this.values.id,
+                like: this.values.counterLike,
+                deslike: this.values.counterDeslike,
+            }
+            try {
+                let result = await this.$http.put('users/' + data.id, data);
+            } catch (error) {
+
+            }
+
+        },
+
         like() {
             this.values.counterLike++;
+            this.setUserLikeAndDeslikePost();
         },
 
         deslike() {
             this.values.counterDeslike++;
+            this.setUserLikeAndDeslikePost();
         }
     },
 }

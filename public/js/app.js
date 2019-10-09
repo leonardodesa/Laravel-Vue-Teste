@@ -1886,6 +1886,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     return {
       user: {},
       values: {
+        id: 0,
         counterLike: 0,
         counterDeslike: 0
       },
@@ -1936,7 +1937,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context2.prev = _context2.next) {
               case 0:
                 _context2.next = 2;
-                return this.$http.get('/users');
+                return this.$http.get('users');
 
               case 2:
                 result = _context2.sent;
@@ -1958,14 +1959,58 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       return returnUserLikeAndDeslike;
     }(),
     setLikeAndDeslikeUser: function setLikeAndDeslikeUser(user) {
+      this.values.id = user.id;
       this.values.counterLike = user.like;
       this.values.counterDeslike = user.deslike;
     },
+    setUserLikeAndDeslikePost: function () {
+      var _setUserLikeAndDeslikePost = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+        var data, result;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                data = {
+                  id: this.values.id,
+                  like: this.values.counterLike,
+                  deslike: this.values.counterDeslike
+                };
+                _context3.prev = 1;
+                _context3.next = 4;
+                return this.$http.put('users/' + data.id, data);
+
+              case 4:
+                result = _context3.sent;
+                _context3.next = 9;
+                break;
+
+              case 7:
+                _context3.prev = 7;
+                _context3.t0 = _context3["catch"](1);
+
+              case 9:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3, this, [[1, 7]]);
+      }));
+
+      function setUserLikeAndDeslikePost() {
+        return _setUserLikeAndDeslikePost.apply(this, arguments);
+      }
+
+      return setUserLikeAndDeslikePost;
+    }(),
     like: function like() {
       this.values.counterLike++;
+      this.setUserLikeAndDeslikePost();
     },
     deslike: function deslike() {
       this.values.counterDeslike++;
+      this.setUserLikeAndDeslikePost();
     }
   }
 });
@@ -52629,15 +52674,14 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*!******************************************************!*\
   !*** ./resources/js/components/ButtonsComponent.vue ***!
   \******************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ButtonsComponent_vue_vue_type_template_id_017852e7___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ButtonsComponent.vue?vue&type=template&id=017852e7& */ "./resources/js/components/ButtonsComponent.vue?vue&type=template&id=017852e7&");
 /* harmony import */ var _ButtonsComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ButtonsComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/ButtonsComponent.vue?vue&type=script&lang=js&");
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _ButtonsComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _ButtonsComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -52667,7 +52711,7 @@ component.options.__file = "resources/js/components/ButtonsComponent.vue"
 /*!*******************************************************************************!*\
   !*** ./resources/js/components/ButtonsComponent.vue?vue&type=script&lang=js& ***!
   \*******************************************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
