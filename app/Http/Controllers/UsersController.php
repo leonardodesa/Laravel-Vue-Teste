@@ -38,10 +38,7 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        // return 'ok';
-            // User::table('users')->insert(
-        //     ['like' => , 'deslike' => 0]
-        // );
+
     }
 
     /**
@@ -75,7 +72,13 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::find($id);
+        $user->like = request('like');
+        $user->deslike = request('deslike');
+
+        $user->save();
+
+        return response()->json($user);
     }
 
     /**

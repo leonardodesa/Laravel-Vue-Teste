@@ -28,12 +28,11 @@ export default {
                 id: 0,
                 counterLike: 0,
                 counterDeslike: 0
-            },
-            output: ''
+            }
         }
     },
 
-    mounted:function(){
+    beforeMount:function(){
         this.showLikeAndDeslikeUser();
     },
 
@@ -56,18 +55,19 @@ export default {
         },
 
         setUserLikeAndDeslikePost: async function() {
-
             let data = {
                 id: this.values.id,
                 like: this.values.counterLike,
                 deslike: this.values.counterDeslike,
+                output: ''
             }
+
             try {
-                let result = await this.$http.put('users/' + data.id, data);
+                let result = await this.$http.put('users/' + data.id , data, data.id);
+                result.output = result;
             } catch (error) {
 
             }
-
         },
 
         like() {

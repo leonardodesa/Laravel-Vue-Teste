@@ -1889,11 +1889,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         id: 0,
         counterLike: 0,
         counterDeslike: 0
-      },
-      output: ''
+      }
     };
   },
-  mounted: function mounted() {
+  beforeMount: function beforeMount() {
     this.showLikeAndDeslikeUser();
   },
   methods: {
@@ -1975,27 +1974,29 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 data = {
                   id: this.values.id,
                   like: this.values.counterLike,
-                  deslike: this.values.counterDeslike
+                  deslike: this.values.counterDeslike,
+                  output: ''
                 };
                 _context3.prev = 1;
                 _context3.next = 4;
-                return this.$http.put('users/' + data.id, data);
+                return this.$http.put('users/' + data.id, data, data.id);
 
               case 4:
                 result = _context3.sent;
-                _context3.next = 9;
+                result.output = result;
+                _context3.next = 10;
                 break;
 
-              case 7:
-                _context3.prev = 7;
+              case 8:
+                _context3.prev = 8;
                 _context3.t0 = _context3["catch"](1);
 
-              case 9:
+              case 10:
               case "end":
                 return _context3.stop();
             }
           }
-        }, _callee3, this, [[1, 7]]);
+        }, _callee3, this, [[1, 8]]);
       }));
 
       function setUserLikeAndDeslikePost() {
