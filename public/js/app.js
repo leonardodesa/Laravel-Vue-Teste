@@ -1880,11 +1880,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      user: {},
       values: {
         id: 0,
         counterLike: 0,
@@ -1983,20 +1989,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 4:
                 result = _context3.sent;
-                result.output = result;
-                _context3.next = 10;
+                _context3.next = 9;
                 break;
 
-              case 8:
-                _context3.prev = 8;
+              case 7:
+                _context3.prev = 7;
                 _context3.t0 = _context3["catch"](1);
 
-              case 10:
+              case 9:
               case "end":
                 return _context3.stop();
             }
           }
-        }, _callee3, this, [[1, 8]]);
+        }, _callee3, this, [[1, 7]]);
       }));
 
       function setUserLikeAndDeslikePost() {
@@ -38816,50 +38821,72 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
     _c("div", { staticClass: "row justify-content-center" }, [
-      _c("div", { staticClass: "col-md-6" }, [
-        _c("div", { staticClass: "card" }, [
-          _c("div", { attrs: { id: "button-like" } }, [
-            _c(
-              "button",
-              {
-                on: {
-                  click: function($event) {
-                    return _vm.like()
+      _c("div", { staticClass: "col-md-8" }, [
+        _c(
+          "div",
+          {
+            staticClass: "row d-flex justify-content-between",
+            staticStyle: { margin: "0" }
+          },
+          [
+            _c("div", { attrs: { id: "button-like" } }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary btn-lg",
+                  on: {
+                    click: function($event) {
+                      return _vm.like()
+                    }
                   }
-                }
-              },
-              [_vm._v("Curtir")]
-            ),
+                },
+                [_vm._v("Curtir")]
+              )
+            ]),
             _vm._v(" "),
-            _c("p", [
-              _vm._v(
-                "Quantas vezes o botão acima foi clicado: " +
-                  _vm._s(_vm.values.counterLike)
+            _c("div", { attrs: { id: "button-deslike" } }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary btn-lg",
+                  on: {
+                    click: function($event) {
+                      return _vm.deslike()
+                    }
+                  }
+                },
+                [_vm._v("Não Curtir")]
               )
             ])
-          ]),
-          _vm._v(" "),
-          _c("div", { attrs: { id: "button-deslike" } }, [
-            _c(
-              "button",
-              {
-                on: {
-                  click: function($event) {
-                    return _vm.deslike()
-                  }
-                }
-              },
-              [_vm._v("Deslike")]
-            ),
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "card-body", staticStyle: { padding: "1.25rem 0" } },
+          [
+            _c("div", [
+              _c("p", { staticClass: "text-left font-weight-bold" }, [
+                _vm._v("Total de Curtidas: " + _vm._s(_vm.values.counterLike))
+              ])
+            ]),
             _vm._v(" "),
-            _c("p", [
-              _vm._v(
-                "Quantas vezes o botão acima foi clicado: " +
-                  _vm._s(_vm.values.counterDeslike)
+            _c("div", [
+              _c(
+                "p",
+                {
+                  staticClass: "text-left font-weight-bold",
+                  staticStyle: { "margin-bottom": "0px" }
+                },
+                [
+                  _vm._v(
+                    "Total não Curtidas: " + _vm._s(_vm.values.counterDeslike)
+                  )
+                ]
               )
             ])
-          ])
-        ])
+          ]
+        )
       ])
     ])
   ])

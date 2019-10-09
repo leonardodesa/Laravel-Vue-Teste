@@ -77,8 +77,7 @@ class UsersController extends Controller
         $user->deslike = request('deslike');
 
         $user->save();
-
-        return response()->json($user);
+        // return response()->json($user);
     }
 
     /**

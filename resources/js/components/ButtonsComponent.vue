@@ -1,16 +1,23 @@
 <template>
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-6">
-                <div class="card">
+            <div class="col-md-8">
+                <div class="row d-flex justify-content-between" style="margin:0">
                     <div id="button-like">
-                        <button v-on:click="like()">Curtir</button>
-                        <p>Quantas vezes o botão acima foi clicado: {{ values.counterLike }}</p>
+                        <button class="btn btn-primary btn-lg" v-on:click="like()">Curtir</button>
                     </div>
 
                     <div id="button-deslike">
-                        <button v-on:click="deslike()">Deslike</button>
-                        <p>Quantas vezes o botão acima foi clicado: {{ values.counterDeslike }}</p>
+                        <button class="btn btn-primary btn-lg" v-on:click="deslike()">Não Curtir</button>
+                    </div>
+                </div>
+
+                <div class="card-body" style="padding:1.25rem 0;">
+                    <div>
+                        <p class="text-left font-weight-bold">Total de Curtidas: {{ values.counterLike }}</p>
+                    </div>
+                    <div>
+                        <p class="text-left font-weight-bold" style="margin-bottom:0px">Total não Curtidas: {{ values.counterDeslike }}</p>
                     </div>
                 </div>
             </div>
@@ -23,7 +30,6 @@ import { log } from 'util';
 export default {
     data() {
         return {
-            user: {},
             values: {
                 id: 0,
                 counterLike: 0,
@@ -64,7 +70,6 @@ export default {
 
             try {
                 let result = await this.$http.put('users/' + data.id , data, data.id);
-                result.output = result;
             } catch (error) {
 
             }
@@ -79,6 +84,6 @@ export default {
             this.values.counterDeslike++;
             this.setUserLikeAndDeslikePost();
         }
-    },
+    }
 }
 </script>
