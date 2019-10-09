@@ -5,12 +5,12 @@
                 <div class="card">
                     <div id="button-like">
                         <button v-on:click="like()">Curtir</button>
-                        <p>Quantas vezes o botão acima foi clicado: {{ counterLike }}</p>
+                        <p>Quantas vezes o botão acima foi clicado: {{ values.counterLike }}</p>
                     </div>
 
                     <div id="button-deslike">
                         <button v-on:click="deslike()">Deslike</button>
-                        <p>Quantas vezes o botão acima foi clicado: {{ counterDeslike }}</p>
+                        <p>Quantas vezes o botão acima foi clicado: {{ values.counterDeslike }}</p>
                     </div>
                 </div>
             </div>
@@ -18,50 +18,48 @@
     </div>
 </template>
 
-<script
-  src="https://code.jquery.com/jquery-3.4.1.min.js"
-  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-  crossorigin="anonymous"></script>
-
 <script>
+import { log } from 'util';
 export default {
     data() {
-        return {           
-            counterLike: 0,
-            counterDeslike: 0,
+        return {
+            user: {},
+            values: {
+                counterLike: 0,
+                counterDeslike: 0
+            },
             output: ''
         }
     },
+
+    mounted:function(){
+        this.showLikeAndDeslikeUser();
+    },
+
     methods: {
+        showLikeAndDeslikeUser: async function() {
+            let user = await this.returnUserLikeAndDeslike();
+            this.setLikeAndDeslikeUser(user);
+        },
+
+        returnUserLikeAndDeslike: async function() {
+            let result = await this.$http.get('/users');
+            let infoUser = JSON.parse(result.bodyText);
+            return infoUser;
+        },
+
+        setLikeAndDeslikeUser: function(user) {
+            this.values.counterLike = user.like;
+            this.values.counterDeslike = user.deslike;
+        },
+
         like() {
-            this.counterLike++;
-            this.formSubmit();
+            this.values.counterLike++;
         },
 
         deslike() {
-            this.counterDeslike++;
-            this.formSubmit();
-        },
-
-        formSubmit() {
-            var thiusOutput = this;
-            $.ajax({
-                headers: {
-                    'X-CSRF-TOKEN': $('[name="_token"]').val()
-                },
-                type:'POST',
-                url:'/home',
-                data:  { 
-                    counterLike: 0,
-                    counterDeslike: 0,
-                    output: ''
-                },
-                success: function(response){
-                    console.log('ok');
-                    // $("#msg").html(response.msg);
-                }
-            });
+            this.values.counterDeslike++;
         }
-    }
+    },
 }
 </script>

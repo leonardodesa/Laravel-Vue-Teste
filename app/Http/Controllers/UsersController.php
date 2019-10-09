@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use App\User;
 
 class UsersController extends Controller
 {
@@ -13,7 +14,10 @@ class UsersController extends Controller
      */
     public function index()
     {
-        //
+        $idUser = Auth::id();
+        $userInfo = User::find($idUser);
+
+        return response()->json($userInfo);
     }
 
     /**
@@ -34,11 +38,8 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        echo request;
-        dd($request);
 
-        var_dump($request);
-        
+        return 'store';
         // if (isset(response()->json([$request->all()))) {
         //     // return response()->json([$request->all()]);
         // }
